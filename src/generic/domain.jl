@@ -87,3 +87,7 @@ supremum(d::Domain) = maximum(d)  # if the maximum exists, then it is also the s
 # override minimum and maximum for closed sets
 function boundary end
 const ∂ = boundary
+
+if !(VERSION < v"0.7-")
+    Broadcast.broadcastable(d::Domain) = Ref(d)
+end
